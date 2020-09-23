@@ -8,6 +8,8 @@ import axios from "./Api";
 import { PokemonContext } from "../PokemonContext";
 import { InputContext } from "../InputContext";
 
+import "./Pokemon.css";
+
 const Pokemon = () => {
   const [input, setInput] = useContext(InputContext);
   const [pokeObject, setPokemon] = useContext(PokemonContext);
@@ -30,17 +32,33 @@ const Pokemon = () => {
   }, [input]);
 
   return (
-    <div>
+    <div className="pokedex">
+      <div className="header">
+        <h1>
+          {pokeObject
+            ? pokeObject.forms[0].name.charAt(0).toUpperCase() +
+              pokeObject.forms[0].name.slice(1)
+            : ""}
+        </h1>
+      </div>
+
       <div>
         <EvolutionSelector />
       </div>
+
       <div className="main">
         <div className="col">
-          <img src="" alt="" />
+          <img
+            src={
+              pokeObject
+                ? pokeObject.sprites.other["official-artwork"].front_default
+                : ""
+            }
+            alt=""
+          />
           <StatsChart />
         </div>
         <div className="description">
-          <h1>{pokeObject ? pokeObject.forms[0].name : ""}</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quia,
             dolor doloribus suscipit quibusdam tenetur cum. Ipsum voluptatem
