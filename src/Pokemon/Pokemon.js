@@ -1,10 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import EvolutionSelector from "./EvolutionSelector/EvolutionSelector.js";
 import StatsChart from "./StatsChart/StatsChart";
 import Physical from "./Physical/Physical";
+import axios from "./Api";
+
+import { PokemonContext } from "../PokemonContext";
+import { InputContext } from "../InputContext";
 
 const Pokemon = () => {
+  const [input, setInput] = useContext(InputContext);
+  const [pokeObject, setPokemon] = useContext(PokemonContext);
+
+  useEffect(() => {
+    console.log("input", input);
+    if (input) {
+      axios
+        .get(`/pokemon/${input}`)
+        .then((res) => {
+          setPokemon(res.data);
+        })
+        .then(() => {
+          console.log("Pokemon Object", pokeObject);
+        })
+        .catch(() => {
+          console.log("There was an error!");
+        });
+    }
+  }, [input]);
+
   return (
     <div>
       <div>
@@ -16,6 +40,7 @@ const Pokemon = () => {
           <StatsChart />
         </div>
         <div className="description">
+          <h1>{pokeObject ? pokeObject.forms[0].name : ""}</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quia,
             dolor doloribus suscipit quibusdam tenetur cum. Ipsum voluptatem

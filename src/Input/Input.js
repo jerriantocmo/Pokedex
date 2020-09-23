@@ -3,18 +3,28 @@ import React, { useState, useContext } from "react";
 import { InputContext } from "../InputContext";
 
 const Input = () => {
+  const [inputText, setInputText] = useState("");
   const [input, setInput] = useContext(InputContext);
 
   return (
-    <div>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setInput(inputText);
+        setInputText("");
+      }}
+    >
       <input
         placeholder="Enter pokemon here"
-        value={input}
+        value={inputText}
         onChange={(e) => {
-          setInput(e.target.value);
+          setInputText(e.target.value);
         }}
       />
-    </div>
+      <button type="submit" value="search">
+        Search
+      </button>
+    </form>
   );
 };
 
