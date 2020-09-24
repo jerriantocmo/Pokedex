@@ -1,0 +1,12 @@
+.physicalContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  width: 440px;
+  border-radius: 10px;
+  background-color: aquamarine;
+}
+
+.stat {
+  text-align: center;
+}

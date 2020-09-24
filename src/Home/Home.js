@@ -4,11 +4,12 @@ import Input from "../Input/Input";
 import Pokemon from "../Pokemon/Pokemon";
 // import Footer from "./Footer/Footer";
 import { PokemonProvider } from "../PokemonContext";
+import "./Home.css";
 
 const Home = () => {
   return (
     <PokemonProvider>
-      <div>
+      <div className="homeContainer">
         <h1>Home</h1>
         <Input></Input>
         <Pokemon />
