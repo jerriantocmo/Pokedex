@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import EvolutionSelector from "./EvolutionSelector/EvolutionSelector.js";
 import StatsChart from "./StatsChart/StatsChart";
 import Physical from "./Physical/Physical";
+import TypeList from "./TypeList/TypeList";
 import axios from "./Api";
 
 import { PokemonContext } from "../PokemonContext";
@@ -10,70 +10,100 @@ import { InputContext } from "../InputContext";
 
 import "./Pokemon.css";
 
+import { capitalize } from "../utility/capital";
+
+// const capitalize = (string) => {
+//   return string.charAt(0).toUpperCase() + string.slice(1);
+// };
+
 const Pokemon = () => {
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [input, setInput] = useContext(InputContext);
   const [pokeObject, setPokemon] = useContext(PokemonContext);
+  const [pokeType, setPokeType] = useState(null);
 
   useEffect(() => {
-    console.log("input", input);
+    console.log(pokeObject, "pokeObject");
     if (input) {
+      setLoading(true);
+      console.log("this runs");
       axios
-        .get(`/pokemon/${input}`)
+        .get(`/pokemon/${input.toLowerCase()}`)
         .then((res) => {
           setPokemon(res.data);
+          setLoading(false);
+          setLoading2(true);
+          axios
+            .get(`/pokemon-species/${res.data.id}`)
+            .then((res) => {
+              console.log(res.data);
+              setPokeType(res.data);
+              setLoading2(false);
+            })
+            .catch(() => {
+              console.log("There was an error! 2");
+            });
         })
         .then(() => {
-          console.log("Pokemon Object", pokeObject);
+          console.log(pokeObject);
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           console.log("There was an error!");
         });
     }
   }, [input]);
 
-  return (
-    <div className="pokedex">
-      <div className="header">
-        <h1>
-          {pokeObject
-            ? pokeObject.forms[0].name.charAt(0).toUpperCase() +
-              pokeObject.forms[0].name.slice(1)
-            : ""}
-        </h1>
-      </div>
-
-      <div>
-        <EvolutionSelector />
-      </div>
-
-      <div className="main">
-        <div className="col">
-          <img
-            src={
-              pokeObject
-                ? pokeObject.sprites.other["official-artwork"].front_default
-                : ""
-            }
-            alt=""
-          />
-          <StatsChart />
+  return loading || loading2 ? (
+    <p>Loading</p>
+  ) : pokeObject ? (
+    <div className="pokedexContainer">
+      <div className="pokedex">
+        <div className="header">
+          <h1>{pokeObject ? capitalize(pokeObject.forms[0].name) : ""}</h1>
         </div>
-        <div className="description">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quia,
-            dolor doloribus suscipit quibusdam tenetur cum. Ipsum voluptatem
-            consectetur alias nulla quod esse illo illum tenetur optio velit,
-            deleniti ad quibusdam, cupiditate quidem sunt aut repellendus in
-            praesentium unde, earum placeat eaque possimus odit adipisci. Maxime
-            nisi autem fuga eius.
-          </p>
-          <Physical />
-          {/* Type */}
-          <ul></ul>
-          {/* Weakness */}
-          <ul></ul>
+
+        <div className="main">
+          <div className="col">
+            <img
+              src={
+                pokeObject
+                  ? pokeObject.sprites.other["official-artwork"].front_default
+                  : ""
+              }
+              alt=""
+            />
+            <StatsChart stats={pokeObject.stats} />
+          </div>
+          <div className="description">
+            <p>
+              {pokeType
+                ? pokeType.flavor_text_entries[0].flavor_text.replace(
+                    /(\r\f|\f|\r)/gm,
+                    " "
+                  )
+                : ""}
+            </p>
+            <Physical />
+            {/* Type */}
+            <ul>
+              Type
+              <li></li>
+            </ul>
+            {/* Weakness */}
+            <ul>
+              Weakness
+              <li></li>
+            </ul>
+          </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div>
+      <br />
+      <div>Enter a pokemon</div>
     </div>
   );
 };
