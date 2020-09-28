@@ -1,0 +1,12 @@
+.stats ul {
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.stats {
+  margin-top: 40px;
+  width: 350px;
+  height: 140px;
+  background-color: grey;
+}

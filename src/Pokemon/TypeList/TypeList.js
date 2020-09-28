@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const TypeList = ({ type }) => {
   return (
     <React.Fragment>
-      <div class="type">{type}</div>
+      <div class="type">types</div>
     </React.Fragment>
   );
 };
