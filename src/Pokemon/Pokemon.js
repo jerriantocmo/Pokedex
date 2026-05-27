@@ -22,7 +22,6 @@ const Pokemon = () => {
   const [input, setInput] = useContext(InputContext);
   const [pokeObject, setPokemon] = useContext(PokemonContext);
   const [pokeType, setPokeType] = useState(null);
-  const [pokeType, setPokeType] = useState(null);
 
   useEffect(() => {
     console.log(pokeObject, "pokeObject");
@@ -95,7 +94,7 @@ const Pokemon = () => {
             {/* Weakness */}
             <ul>
               Weakness
-              <li>{pokeObject?pokeObject.types[1]?.type.name || "Yolo": ""}</li>
+              <li>{pokeObject?pokeObject.types[1]?.type.name || "": ""}</li>
             </ul>
           </div>
         </div>
