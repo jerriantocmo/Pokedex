@@ -77,14 +77,16 @@ const Pokemon = () => {
             <StatsChart stats={pokeObject.stats} />
           </div>
           <div className="description">
-            <p>
-              {pokeType
-                ? pokeType.flavor_text_entries[0].flavor_text.replace(
-                    /(\r\f|\f|\r)/gm,
-                    " "
-                  )
-                : ""}
-            </p>
+            <div className="descriptionSummary">
+              <p>
+                {pokeType
+                  ? pokeType.flavor_text_entries[0].flavor_text.replace(
+                      /(\r\f|\f|\r)/gm,
+                      " "
+                    )
+                  : ""}
+              </p>
+            </div>
             <Physical props={pokeObject}/>
             {/* Type */}
             <ul>

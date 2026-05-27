@@ -4,7 +4,7 @@ import "./Physical.css";
 const Physical = ({ props }) => {
   return (
     <div className="physicalContainer">
-      <div className="col">
+      <div >
         <div className="stat">
           <h4>Height</h4>
           <span>Data</span>
@@ -18,7 +18,7 @@ const Physical = ({ props }) => {
           <span>Data</span>
         </div>
       </div>
-      <div className="col">
+      <div >
         <div className="stat">
           <h4>Category</h4>
           <span>Data</span>

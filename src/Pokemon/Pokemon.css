@@ -22,7 +22,7 @@ header {
 .main {
   display: flex;
   height: 100%;
-  justify-content: space-around;
+ 
   padding: 20px;
 
 }
@@ -30,7 +30,7 @@ header {
 .main .col img {
   background-color: rgb(159, 193, 223);
   border-radius: 10px;
-  width: 350px;
+  width: 100%;
 }
 
 .col {
@@ -47,10 +47,14 @@ header {
 }
 
 .description {
-  flex: .5;
+  flex: 1;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: left;
-  background-color: white
+}
+
+.descriptionSummary {
+  text-align: left;
+  font-weight: 50;
+  
 }
