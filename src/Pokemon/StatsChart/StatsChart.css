@@ -5,8 +5,11 @@
 }
 
 .stats {
-  margin-top: 40px;
-  width: 350px;
-  height: 140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+  width: 100%;
+  height: 150px;
   background-color: grey;
 }

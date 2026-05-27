@@ -77,24 +77,26 @@ const Pokemon = () => {
             <StatsChart stats={pokeObject.stats} />
           </div>
           <div className="description">
-            <p>
-              {pokeType
-                ? pokeType.flavor_text_entries[0].flavor_text.replace(
-                    /(\r\f|\f|\r)/gm,
-                    " "
-                  )
-                : ""}
-            </p>
-            <Physical />
+            <div className="descriptionSummary">
+              <p>
+                {pokeType
+                  ? pokeType.flavor_text_entries[0].flavor_text.replace(
+                      /(\r\f|\f|\r)/gm,
+                      " "
+                    )
+                  : ""}
+              </p>
+            </div>
+            <Physical props={pokeObject}/>
             {/* Type */}
             <ul>
               Type
-              <li></li>
+              <li>{pokeObject?pokeObject.types[0].type.name: ""}</li>
             </ul>
             {/* Weakness */}
             <ul>
               Weakness
-              <li></li>
+              <li>{pokeObject?pokeObject.types[1]?.type.name || "": ""}</li>
             </ul>
           </div>
         </div>
