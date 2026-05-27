@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { InputContext } from "../InputContext";
+import "./Input.css";
 
 const Input = () => {
   const [inputText, setInputText] = useState("");
