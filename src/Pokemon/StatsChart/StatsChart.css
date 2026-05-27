@@ -1,0 +1,15 @@
+.stats ul {
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 40px;
+  width: 350px;
+  height: 150px;
+  background-color: grey;
+}
