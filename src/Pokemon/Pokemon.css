@@ -16,13 +16,15 @@ header {
   background-color: rgba(255, 0, 0, 0.705);
   border-radius: 10px;
   width: 100%;
-  height: 650px;
+  max-width: 900px;
 }
 
 .main {
   display: flex;
   height: 100%;
   justify-content: space-around;
+  padding: 20px;
+
 }
 
 .main .col img {
@@ -45,9 +47,10 @@ header {
 }
 
 .description {
-  flex: 1;
+  flex: .5;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  background-color: white
 }

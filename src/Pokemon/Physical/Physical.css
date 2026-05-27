@@ -4,7 +4,7 @@
   padding: 20px;
   width: 440px;
   border-radius: 10px;
-  background-color: aquamarine;
+  background-color: grey;
 }
 
 .stat {
@@ -23,5 +23,5 @@ li{
   text-transform: capitalize;
   font-weight: bold;
   padding-bottom: 5px;
-  color: rgb(153, 0, 255);
+
 }
