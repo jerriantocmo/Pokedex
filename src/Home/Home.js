@@ -10,8 +10,7 @@ const Home = () => {
   return (
     <PokemonProvider>
       <div className="homeContainer">
-        <h1>Home</h1>
-        <Input></Input>
+        <Input classname="homeInput"></Input>
         <Pokemon />
         {/* <Footer /> */}
       </div>
