@@ -19,8 +19,10 @@ import { capitalize } from "../utility/capital";
 const Pokemon = () => {
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
   const [input, setInput] = useContext(InputContext);
   const [pokeObject, setPokemon] = useContext(PokemonContext);
+  const [pokeSpecies, setPokeSpecies] = useState(null);
   const [pokeType, setPokeType] = useState(null);
 
   useEffect(() => {
@@ -34,16 +36,29 @@ const Pokemon = () => {
           setPokemon(res.data);
           setLoading(false);
           setLoading2(true);
+          setLoading3(true);
           axios
-            .get(`/pokemon-species/${res.data.id}`)
+            .get(`/pokemon-species/${input.toLowerCase()}`)
             .then((res) => {
               console.log(res.data);
-              setPokeType(res.data);
+              setPokeSpecies(res.data);
               setLoading2(false);
+              axios
+                .get(`/type/${input.toLowerCase()}`)
+                .then((res) => {
+                console.log(res.data);
+                setPokeType(res.data);
+                setLoading3(false);
+                })
+                .catch(() => {
+                  console.log("There was an error! 3");
+                });
             })
             .catch(() => {
               console.log("There was an error! 2");
             });
+          
+          
         })
         .then(() => {
           console.log(pokeObject);
@@ -79,8 +94,8 @@ const Pokemon = () => {
           <div className="description">
             <div className="descriptionSummary">
               <p>
-                {pokeType
-                  ? pokeType.flavor_text_entries[0].flavor_text.replace(
+                {pokeSpecies
+                  ? pokeSpecies.flavor_text_entries[0].flavor_text.replace(
                       /(\r\f|\f|\r)/gm,
                       " "
                     )
@@ -89,15 +104,20 @@ const Pokemon = () => {
             </div>
             <Physical props={pokeObject}/>
             {/* Type */}
-            <ul>
-              Type
-              <li>{pokeObject?pokeObject.types[0].type.name: ""}</li>
-            </ul>
-            {/* Weakness */}
-            <ul>
-              Weakness
-              <li>{pokeObject?pokeObject.types[1]?.type.name || "": ""}</li>
-            </ul>
+
+            <div className="typeAndWeaknessContainer">
+              <h4>Type</h4>
+              <ul className="typeListItemsContainer">
+                <li>{pokeObject?pokeObject.types[0].type.name: ""}</li>
+                <li>{pokeObject?pokeObject.types[1]?.type.name || "": ""}</li>
+              </ul>
+              <h4>Weakness</h4>
+              <ul className="typeListItemsContainer">
+                  <li>{pokeType?pokeType.damage_relations.double_damage_from[0]?.name: ""}</li>
+                  <li>{pokeType?pokeType.damage_relations.double_damage_from[1]?.name: ""}</li>
+
+              </ul>
+            </div>
           </div>
         </div>
       </div>
