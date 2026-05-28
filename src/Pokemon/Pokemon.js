@@ -43,22 +43,21 @@ const Pokemon = () => {
               console.log(res.data);
               setPokeSpecies(res.data);
               setLoading2(false);
-              axios
-                    .get(`/type/${res.data.types[0].type.name}`)
-                    .then((res) => {
-                    console.log(res.data);
-                    setPokeType(res.data);
-                    setLoading3(false);
-                    })
-                    .catch(() => {
-                      console.log("There was an error! 3");
-                    });
+              
                 })
             .catch(() => {
               console.log("There was an error! 2");
             });
-          
-          
+          axios
+            .get(`/type/${res.data.types[0].type.name}`)
+            .then((res) => {
+            console.log(res.data);
+            setPokeType(res.data);
+            setLoading3(false);
+            })
+            .catch(() => {
+              console.log("There was an error! 3");
+            });
         })
         .then(() => {
           console.log(pokeObject);
