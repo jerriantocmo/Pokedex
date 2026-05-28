@@ -44,16 +44,16 @@ const Pokemon = () => {
               setPokeSpecies(res.data);
               setLoading2(false);
               axios
-                .get(`/type/${input.toLowerCase()}`)
-                .then((res) => {
-                console.log(res.data);
-                setPokeType(res.data);
-                setLoading3(false);
+                    .get(`/type/${res.data.types[0].type.name}`)
+                    .then((res) => {
+                    console.log(res.data);
+                    setPokeType(res.data);
+                    setLoading3(false);
+                    })
+                    .catch(() => {
+                      console.log("There was an error! 3");
+                    });
                 })
-                .catch(() => {
-                  console.log("There was an error! 3");
-                });
-            })
             .catch(() => {
               console.log("There was an error! 2");
             });
@@ -107,12 +107,10 @@ const Pokemon = () => {
 
             <div className="typeAndWeaknessContainer">
               <h4>Type</h4>
-              <ul className="typeListItemsContainer">
-                <ul className="typeListItemsContainer">
+              <ul className="typeListItemsContainer">  
                 {pokeObject?.types.map((type) => (
                     <li>{type.type.name}</li>
                 ))}
-              </ul>
               </ul>
               <h4>Weakness</h4>
               <ul className="typeListItemsContainer">
