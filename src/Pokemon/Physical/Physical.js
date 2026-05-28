@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Physical.css";
+import {decToFeet} from "../../utility/decToFeet";
 
 const Physical = ({ props }) => {
   return (
@@ -7,7 +8,7 @@ const Physical = ({ props }) => {
       <div >
         <div className="stat">
           <h4>Height</h4>
-          <span>Data</span>
+          <span>{props? decToFeet(props.height) : ""}</span>
         </div>
         <div className="stat">
           <h4>Weight</h4>
