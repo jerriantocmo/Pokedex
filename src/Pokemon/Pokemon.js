@@ -108,14 +108,17 @@ const Pokemon = () => {
             <div className="typeAndWeaknessContainer">
               <h4>Type</h4>
               <ul className="typeListItemsContainer">
-                <li>{pokeObject?pokeObject.types[0].type.name: ""}</li>
-                <li>{pokeObject?pokeObject.types[1]?.type.name || "": ""}</li>
+                <ul className="typeListItemsContainer">
+                {pokeObject?.types.map((type) => (
+                    <li>{type.type.name}</li>
+                ))}
+              </ul>
               </ul>
               <h4>Weakness</h4>
               <ul className="typeListItemsContainer">
-                  <li>{pokeType?pokeType.damage_relations.double_damage_from[0]?.name: ""}</li>
-                  <li>{pokeType?pokeType.damage_relations.double_damage_from[1]?.name: ""}</li>
-
+                {pokeType?.damage_relations.double_damage_from.map((type) => (
+                  <li>{type.name}</li>
+                ))}
               </ul>
             </div>
           </div>
