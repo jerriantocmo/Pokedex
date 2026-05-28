@@ -43,21 +43,46 @@ const Pokemon = () => {
               console.log(res.data);
               setPokeSpecies(res.data);
               setLoading2(false);
-              
-                })
+
+            })
             .catch(() => {
               console.log("There was an error! 2");
             });
-          axios
-            .get(`/type/${res.data.types[0].type.name}`)
-            .then((res) => {
-            console.log(res.data);
-            setPokeType(res.data);
+
+          // Extract the weaknesses of the pokemon based on the type of the pokemon
+
+          const types = res.data.types
+          const typeWeakness = []
+          const typesNoDamage = []
+
+          Promise.all(
+            types.map((type) =>
+              axios.get(`/type/${type.type.name}`)
+                .then((res) => {
+                  console.log(res.data);
+                  res.data.damage_relations.double_damage_from.map((typeDamage) => {
+                    if (!typeWeakness.includes(typeDamage.name))
+                    typeWeakness.push(typeDamage.name);
+                  });
+                  res.data.damage_relations.half_damage_from.map((typeHalfDamage) => {
+                    if (!typesNoDamage.includes(typeHalfDamage.name))
+                      typesNoDamage.push(typeHalfDamage.name);
+                  });
+                  res.data.damage_relations.no_damage_from.map((typeNoDamage) => {
+                    if (!typesNoDamage.includes(typeNoDamage.name))
+                      typesNoDamage.push(typeNoDamage.name);
+                  });
+                })
+                .catch(() => {
+                  console.log("There was an error! 3");
+                })
+            )
+          ).then(() => {
             setLoading3(false);
-            })
-            .catch(() => {
-              console.log("There was an error! 3");
-            });
+            const uniqueWeakness = typeWeakness.filter(type => !typesNoDamage.includes(type));
+            setPokeType(uniqueWeakness);
+          });
+
         })
         .then(() => {
           console.log(pokeObject);
@@ -95,26 +120,26 @@ const Pokemon = () => {
               <p>
                 {pokeSpecies
                   ? pokeSpecies.flavor_text_entries[0].flavor_text.replace(
-                      /(\r\f|\f|\r)/gm,
-                      " "
-                    )
+                    /(\r\f|\f|\r)/gm,
+                    " "
+                  )
                   : ""}
               </p>
             </div>
-            <Physical props={pokeObject}/>
+            <Physical props={pokeObject} />
             {/* Type */}
 
             <div className="typeAndWeaknessContainer">
               <h4>Type</h4>
-              <ul className="typeListItemsContainer">  
+              <ul className="typeListItemsContainer">
                 {pokeObject?.types.map((type) => (
-                    <li>{type.type.name}</li>
+                  <li>{type.type.name}</li>
                 ))}
               </ul>
               <h4>Weakness</h4>
               <ul className="typeListItemsContainer">
-                {pokeType?.damage_relations.double_damage_from.map((type) => (
-                  <li>{type.name}</li>
+                {pokeType?.map((type) => (
+                  <li>{type}</li>
                 ))}
               </ul>
             </div>
