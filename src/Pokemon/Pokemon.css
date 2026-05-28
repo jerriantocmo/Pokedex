@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -57,4 +58,38 @@ header {
   text-align: left;
   font-weight: 50;
   
+}
+
+.typeAndWeaknessContainer {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3%;
+  padding-left: 3%;
+}
+
+.typeAndWeaknessContainer h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.typeListItemsContainer {
+  display: flex;
+  flex: grow;
+  flex-direction: row;
+  text-align: middle;
+}
+
+.typeListItemsContainer li {
+  list-style-type: none;
+  text-transform: capitalize;
+  text-align: middle;
+
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 10px;
+  background-color: rgb(89, 55, 153);
+  color: rgb(202, 202, 202);
+
 }
