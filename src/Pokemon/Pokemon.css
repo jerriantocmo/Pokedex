@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+
+  --light-gray: rgb(236, 236, 236);
+  --dark-gray: rgb(48, 47, 47);
 }
 
 header {
@@ -75,21 +78,92 @@ header {
 
 .typeListItemsContainer {
   display: flex;
-  flex: grow;
+  justify-content: space-between;
   flex-direction: row;
   text-align: middle;
+  justify-content: left;
 }
 
 .typeListItemsContainer li {
   list-style-type: none;
   text-transform: capitalize;
-  text-align: middle;
+  text-align: center;
+  width:23.29%;
 
-  font-weight: bold;
+  margin-right: 10px;
   padding: 10px 10px;
   border-radius: 5px;
-  border: 10px;
-  background-color: rgb(89, 55, 153);
-  color: rgb(202, 202, 202);
 
+}
+
+
+
+.background-grass {
+  background-color: rgb(120, 200, 80);
+  color: rgb(66, 66, 66)
+}
+.background-fire {
+  background-color: rgb(197, 41, 21);
+  color: var(--light-gray);
+}
+.background-water {
+  background-color: rgb(100, 150, 255);
+  color: var(--light-gray);
+}
+
+.background-electric {
+  background-color: rgb(255, 255, 0);
+  color: var(--dark-gray);
+}
+.background-ice {
+  background-color: rgb(150, 255, 255);
+  color: var(--dark-gray);
+}
+.background-fighting {
+  background-color: rgb(200, 110, 50);
+  color: var(--light-gray);
+}
+
+.background-poison {
+  background-color: rgb(160, 60, 160);
+  color: var(--light-gray);
+}
+
+.background-ground {
+  background-color: rgb(200, 170, 100);
+  color: var(--dark-gray); 
+}
+
+.background-flying {
+  background-color: rgb(150, 150, 255);
+  color: var(--light-gray);
+}
+.background-psychic {
+  background-color: rgb(255, 100, 255);
+  color: var(--dark-gray);
+}
+.background-bug {
+  background-color: rgb(170, 200, 50);
+  color: var(--light-gray);
+}
+
+.background-rock {
+  background-color: rgb(170, 170, 170);
+  color: var(--light-gray);
+}
+.background-ghost {
+  background-color: rgb(100, 100, 200);
+  color: var(--light-gray);
+}
+.background-dragon {
+  background-color: rgb(100, 150, 200);
+  color: var(--light-gray);
+}
+.background-dark {
+  background-color: rgb(50, 50, 50);
+  color: var(--light-gray);
+}
+.background-steel {
+  background-color: rgb(170, 170, 200);
+  color: var(--light-gray);
 }

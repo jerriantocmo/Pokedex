@@ -8,7 +8,7 @@ const StatsChart = ({ stats }) => {
     <div className="stats">
       <ul>
         {stats.map((e) => (
-          <li>{capitalize(e.stat.name) + " - " + e.base_stat}</li>
+          <li>{capitalize(e.stat.name) + ": " + e.base_stat}</li>
         ))}
       </ul>
     </div>

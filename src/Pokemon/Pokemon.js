@@ -12,9 +12,6 @@ import "./Pokemon.css";
 
 import { capitalize } from "../utility/capital";
 
-// const capitalize = (string) => {
-//   return string.charAt(0).toUpperCase() + string.slice(1);
-// };
 
 const Pokemon = () => {
   const [loading, setLoading] = useState(false);
@@ -62,7 +59,7 @@ const Pokemon = () => {
                   console.log(res.data);
                   res.data.damage_relations.double_damage_from.map((typeDamage) => {
                     if (!typeWeakness.includes(typeDamage.name))
-                    typeWeakness.push(typeDamage.name);
+                      typeWeakness.push(typeDamage.name);
                   });
                   res.data.damage_relations.half_damage_from.map((typeHalfDamage) => {
                     if (!typesNoDamage.includes(typeHalfDamage.name))
@@ -128,18 +125,19 @@ const Pokemon = () => {
             </div>
             <Physical props={pokeObject} />
             {/* Type */}
-
             <div className="typeAndWeaknessContainer">
               <h4>Type</h4>
               <ul className="typeListItemsContainer">
                 {pokeObject?.types.map((type) => (
-                  <li>{type.type.name}</li>
+                  <li className={`background-${pokeType ? type.type.name : 'none'}`}>{type.type.name}</li>
                 ))}
               </ul>
               <h4>Weakness</h4>
               <ul className="typeListItemsContainer">
                 {pokeType?.map((type) => (
-                  <li>{type}</li>
+                  <li className={`background-${pokeType ? type : 'none'}`}>
+                    {type}
+                  </li>
                 ))}
               </ul>
             </div>
