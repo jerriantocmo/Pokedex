@@ -97,7 +97,7 @@ const Pokemon = () => {
     <div className="pokedexContainer">
       <div className="pokedex">
         <div className="header">
-          <h1>{pokeObject ? capitalize(pokeObject.forms[0].name) : ""}</h1>
+          <h1>{pokeObject ? capitalize(pokeObject.forms[0].name) + " #" + pokeObject.id : ""}</h1>
         </div>
 
         <div className="main">
