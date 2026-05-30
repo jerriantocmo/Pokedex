@@ -26,7 +26,7 @@ header {
 .main {
   display: flex;
   height: 100%;
- 
+
   padding: 20px;
 
 }
@@ -60,7 +60,7 @@ header {
 .descriptionSummary {
   text-align: left;
   font-weight: 50;
-  
+
 }
 
 .typeAndWeaknessContainer {
@@ -78,6 +78,7 @@ header {
 
 .typeListItemsContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: row;
   text-align: middle;
@@ -88,24 +89,26 @@ header {
   list-style-type: none;
   text-transform: capitalize;
   text-align: center;
-  width:23.29%;
+  width: 23.29%;
+  font-weight: 8px;
 
   margin-right: 10px;
+  margin-bottom: 10px;
   padding: 10px 10px;
   border-radius: 5px;
 
 }
 
-
-
 .background-grass {
   background-color: rgb(120, 200, 80);
   color: rgb(66, 66, 66)
 }
+
 .background-fire {
   background-color: rgb(197, 41, 21);
   color: var(--light-gray);
 }
+
 .background-water {
   background-color: rgb(100, 150, 255);
   color: var(--light-gray);
@@ -115,10 +118,12 @@ header {
   background-color: rgb(255, 255, 0);
   color: var(--dark-gray);
 }
+
 .background-ice {
   background-color: rgb(150, 255, 255);
   color: var(--dark-gray);
 }
+
 .background-fighting {
   background-color: rgb(200, 110, 50);
   color: var(--light-gray);
@@ -131,17 +136,19 @@ header {
 
 .background-ground {
   background-color: rgb(200, 170, 100);
-  color: var(--dark-gray); 
+  color: var(--dark-gray);
 }
 
 .background-flying {
   background-color: rgb(150, 150, 255);
   color: var(--light-gray);
 }
+
 .background-psychic {
   background-color: rgb(255, 100, 255);
   color: var(--dark-gray);
 }
+
 .background-bug {
   background-color: rgb(170, 200, 50);
   color: var(--light-gray);
@@ -151,19 +158,33 @@ header {
   background-color: rgb(170, 170, 170);
   color: var(--light-gray);
 }
+
 .background-ghost {
   background-color: rgb(100, 100, 200);
   color: var(--light-gray);
 }
+
 .background-dragon {
   background-color: rgb(100, 150, 200);
   color: var(--light-gray);
 }
+
 .background-dark {
   background-color: rgb(50, 50, 50);
   color: var(--light-gray);
 }
+
 .background-steel {
   background-color: rgb(170, 170, 200);
-  color: var(--light-gray);
+  color: var(--dark-gray);
+}
+
+.background-fairy {
+  background-color: rgb(255, 150, 200);
+  color: var(--dark-gray);
+}
+
+.background-normal {
+  background-color: rgb(211, 183, 124);
+  color: var(--dark-gray);
 }
